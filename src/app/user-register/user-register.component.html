@@ -1,0 +1,66 @@
+<form [formGroup]="registerForm" (ngSubmit)="addUser()">
+  <div class="parentContainer">
+    <div class="headerText">Register User</div>
+
+    <div class="form-group">
+      <label class="center-block">User Name:
+        <input class="form-control" formControlName="username">
+      </label>
+      <div *ngIf="submitted && registerForm.controls['username'].errors" class="alert alert-danger valContainer">
+        UserName is required.
+      </div>
+      <div [formGroup]="passwordForm">
+          <div class="form-group">
+        <label class="center-block">Password:
+          <input type="password" class="form-control" formControlName="password">
+        </label>
+        <div *ngIf="submitted && passwordForm.controls['password'].errors" class="alert alert-danger valContainer">
+          Password is required.
+        </div>
+        </div>
+        <div class="form-group">
+        <label class="center-block">Confirm Password:
+          <input type="password" class="form-control" formControlName="cnfpassword">
+        </label>
+        <div *ngIf="submitted && passwordForm.controls['cnfpassword'].errors?.required"> Confirm Password is required.</div>
+        </div>
+        <div *ngIf="passwordForm.errors?.passwordmismatch" class="alert alert-danger valContainer"> Password mismatch.</div>
+      </div>
+
+      <label class="center-block">FullName:
+        <input class="form-control" formControlName="fullname">
+      </label>
+
+      <label class="center-block">Email:
+        <input class="form-control" formControlName="email">
+      </label>
+      <div *ngIf="submitted && registerForm.controls['email'].errors" class="alert alert-danger valContainer">
+        <div *ngIf="registerForm.controls['email'].errors.required"> Email is required.</div>
+        <div *ngIf="registerForm.controls['email'].errors.email"> Email format incorrect.</div>
+      </div>
+
+      <label class="center-block">Phone:
+        <input class="form-control" formControlName="phone">
+      </label>
+      <div *ngIf="submitted && registerForm.controls['phone'].errors" class="alert alert-danger valContainer">
+        <div *ngIf="registerForm.controls['phone'].errors.required"> Phone number is required.</div>
+        <div *ngIf="registerForm.controls['phone'].errors.pattern"> Phone number should contain numbers only.</div>
+        <div *ngIf="registerForm.controls['phone'].errors.minlength"> Min length is 10.</div>
+        <div *ngIf="registerForm.controls['phone'].errors.maxlength"> Max length is 10.</div>
+      </div>
+
+      <label class="center-block">Address:
+        <input class="form-control" formControlName="address">
+      </label>
+      <div *ngIf="submitted && registerForm.controls['address'].errors" class="alert alert-danger valContainer">
+        Address is required.
+      </div>
+
+      <label class="center-block">DOB:
+        <input type="date" class="form-control" formControlName="dob">
+      </label>
+    </div>
+    <button id="btnSubmit" type="submit" [disabled]="loading" class="btn btn-success">Save</button>&nbsp;
+    <button id="btnCancel" type="button" routerLink="/login" class="btn btn-success">Cancel</button>
+  </div>
+</form>

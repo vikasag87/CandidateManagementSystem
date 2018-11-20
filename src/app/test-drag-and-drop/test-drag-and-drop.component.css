@@ -1,0 +1,13 @@
+
+
+.bgBlue{
+    background-color: rgb(139, 223, 253);
+    font-size: 14pt;
+    font-weight: bold;
+    width: 100px;
+  }
+
+  .bgPink{
+    background-color: lightpink;
+    height: 300px;
+  }

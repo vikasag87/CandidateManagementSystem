@@ -1,0 +1,80 @@
+<div class="menuContainer">
+  <kendo-menu [items]="items">
+    <ng-template kendoMenuItemLinkTemplate let-item="item" let-index="index">
+      <a [kendoMenuItemLink]="index" (click)="openPopup(item.show)">
+        {{ item.text }}
+        <span *ngIf="item.items && item.items.length" [kendoMenuExpandArrow]="index"></span>
+      </a>
+    </ng-template>
+  </kendo-menu>
+</div>
+<!-- mwlDraggable  (dragEnd)="popUpDragEnd($event)"-->
+<kendo-popup [popupClass]="content" [offset]="offset" *ngIf="show">
+
+  <kendo-splitter>
+    <kendo-splitter-pane size="50%">
+      <h4>Please select entity.</h4>
+      <kendo-treeview [nodes]="treeviewdata" textField="text" kendoTreeViewExpandable kendoTreeViewSelectable kendoTreeViewHierarchyBinding
+        childrenField="items" onSelectionChange="onTreeItemClick(event)">
+        <ng-template kendoTreeViewNodeTemplate let-dataItem>
+          <a (mousedown)="onTreeItemClick(dataItem)">{{dataItem.text}}</a>
+        </ng-template>
+      </kendo-treeview>
+    </kendo-splitter-pane>
+    <kendo-splitter-pane>
+      <div>
+        <form>
+          <div class="form-group">
+            <label for="viewtype">View Type</label>
+            <br>
+            <input name="viewtype" type="radio" value="Read Only" [(ngModel)]="ViewType">Read Only
+            <input name="viewtype" type="radio" value="Editable" [(ngModel)]="ViewType">Editable
+          </div>
+
+          <div class="form-group">
+            <label for="instances">Instances</label>
+            <br>
+            <input name="instances" type="radio" value="Single" [(ngModel)]="Instances">Single
+            <input name="instances" type="radio" value="Multiple" [(ngModel)]="Instances">Multiple
+          </div>
+        </form>
+      </div>
+      <button type="submit" class="btn btn-success" (click)="onNewClick()">New</button>&nbsp;
+      <button type="button" (click)="closePopup()" class="btn btn-success">Close</button>
+    </kendo-splitter-pane>
+  </kendo-splitter>
+
+
+</kendo-popup>
+<div *ngIf="isEntitySelected" style="display: table;">
+  <div style="display: table-row;">
+  <div class="leftContainer">
+    <div *ngIf="selectedEntity?.EntityName" class="selectedEntityMsg">{{selectedEntity?.EntityName}}, {{ ViewType }} , {{ Instances }} Instance</div>
+    <div class="EntityPropertyList">
+      <div mwlDraggable dropData="entity" *ngFor="let prop of PolicyData" (dragEnd)="entityPropDragEnd($event, prop)" class="entityProp">{{prop.text}}</div>
+    </div>
+  </div>
+  <div class="rightContainer" mwlDroppable (drop)="dropEndEvent($event)">
+      <!-- <tbody> -->
+          <!-- <tr>  *ngFor="let field of fieldArray; let i = index" -->
+              <!-- <tr> -->
+            <!-- <td>                
+              <div class="input-group">        -->
+                <!-- <label mwlDraggable id="lbl_{{field.id}}" (dragEnd)="controlDragEnd($event, field.id, 'element')">  {{field.text}}       
+                <input mwlResizable id="elmnt_{{field.id}}"
+                [enableGhostResize]="false"                
+                (resizeEnd)="onResizeEnd($event, field.id)"
+                [resizeEdges]="{bottom: true, right: true, top: true, left: true}" type="{{field.controltype}}" name="{{field.text}}">
+                
+                <a (click)="onDeleteClick(field)"> <img style="height: 70px; width:70px;cursor: pointer;" src="../../assets/images/delete.png"/></a>
+                </label> -->            
+                <ng-template dropped-host></ng-template>
+              <!-- </div>
+            </td> -->
+          <!-- </tr>
+        </tbody> -->
+  </div>
+</div>
+</div>
+
+<!-- [resizeCursorPrecision]="10" -->

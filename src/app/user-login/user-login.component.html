@@ -1,0 +1,22 @@
+<form [formGroup]="loginForm" (ngSubmit)="validateUser()">
+  <div class="parentContainer">
+      <div class="headerText">Candidate management System</div>
+    <div class="form-group">
+      <label class="center-block">User Name:
+        <input class="form-control" formControlName="username">
+      </label>
+      <div *ngIf="submitted && loginForm.controls['username'].errors" class="alert alert-danger valContainer">
+        UserName is required.
+      </div>
+      <label class="center-block">Password:
+        <input type="password" class="form-control" formControlName="password">
+      </label>
+      <div *ngIf="submitted && loginForm.controls['password'].errors" class="alert alert-danger valContainer">
+        Password is required.
+      </div>
+    </div>
+    <button type="submit" [disabled]="loading" class="btn btn-success">Login</button>&nbsp;
+    <button bgColorChanger (myOutput)="outDataReceived($event);" type="button" routerLink="/register" class="btn btn-success">Register</button>    
+    <label id="errMsg"></label>
+  </div>
+</form>

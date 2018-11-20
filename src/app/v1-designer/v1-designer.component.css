@@ -1,0 +1,36 @@
+.menuContainer{
+    background-color: lightgray;
+}
+.content {
+    padding: 30px;
+    color: #787878;
+    background-color: #fcd6dd;
+    border: 1px solid rgba(0,0,0,.05);
+  }
+  .selectedEntityMsg{
+    font-size: 1em;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: bold;
+    text-align: center;
+  }
+  .entityProp{
+    border-width: 1px;
+    border-color: grey;
+    border-style: solid;
+    background-color: bisque;
+  }
+
+  .leftContainer{
+    width: 300px;
+    display: table-cell;
+  }
+
+  .rightContainer{
+    background-color: rgb(241, 195, 195);
+    display: table-cell;
+    min-width: 800px;
+    min-height: 600px;
+  }
+  mwlResizable {
+    box-sizing: border-box;
+  }

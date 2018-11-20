@@ -1,0 +1,5 @@
+<label mwlDraggable dropData="control" id="lbl_{{data.id}}" (dragEnd)="controlDragEnd($event, data.id)">  {{data.text}}      
+                              
+    <input type="checkbox" id="elmnt_{{data.id}}" />                
+  <a (click)="onDeleteClick(data)"> <img style="height: 70px; width:70px;cursor: pointer;" src="../../assets/images/delete.png"/></a>
+  </label>

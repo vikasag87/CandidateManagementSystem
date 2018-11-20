@@ -1,0 +1,9 @@
+.bgHeading{
+    background-color: lightgray;
+    font-weight: bold;
+}
+
+.formLayout {
+    margin-top: 30px;
+    width: 50%;
+  }

@@ -1,0 +1,92 @@
+<p>
+  Candidate List:
+</p>
+
+<mat-table #table [dataSource]="dataSource" matSort>
+  <ng-container matColumnDef="{{column.id}}" *ngFor="let column of columnNames">
+    <mat-header-cell *matHeaderCellDef mat-sort-header class="bgHeading"> {{column.value}} </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element[column.id]}} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="actionsColumn">
+    <mat-header-cell *matHeaderCellDef class="bgHeading">
+      <button (click)="createNew()">Create new</button>      
+    </mat-header-cell>
+    <mat-cell *matCellDef="let row">
+      <button (click)="edit(row)">Edit</button>&nbsp;
+      <button (click)="delete(row)">Delete</button>
+    </mat-cell>
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+</mat-table>
+
+<form *ngIf="createMode || editMode" [formGroup]="candidateForm" (ngSubmit)="addEditUser()" class="formLayout">
+    <div class="form-group">
+  <label>
+    Name:
+    <input type="text" formControlName="name">
+  </label>
+  <div *ngIf="submitted && candidateForm.controls['name'].errors" class="alert alert-danger valContainer">
+      Name is required.
+    </div>
+</div>
+<div class="form-group">
+  <label>
+    Email:
+    <input type="text" formControlName="email">
+  </label>
+  <div *ngIf="submitted && candidateForm.controls['email'].errors" class="alert alert-danger valContainer">
+      <div *ngIf="candidateForm.controls['email'].errors.required"> Email is required.</div>
+      <div *ngIf="candidateForm.controls['email'].errors.email"> Email format incorrect.</div>
+    </div>
+  </div>
+  <div class="form-group">
+  <label>
+    Phone:
+    <input type="text" formControlName="phone">
+  </label>
+  <div *ngIf="submitted && candidateForm.controls['phone'].errors" class="alert alert-danger valContainer">
+      Phone is required.
+    </div>
+</div>
+<div class="form-group">
+  <label>
+    Date Of Interview:
+    <input type="date" formControlName="dointerview">
+  </label>
+  <div *ngIf="submitted && candidateForm.controls['dointerview'].errors" class="alert alert-danger valContainer">
+      Date of Interview is required.
+    </div>
+  </div>
+  <div class="form-group">
+  <label>
+    HR:
+    <!-- <input type="text" formControlName="hr"> -->
+    <select formControlName="hr">
+        <option *ngFor="let hr of hrList" [value]="hr">{{hr}}</option>
+      </select>
+  </label>
+  <div *ngIf="submitted && candidateForm.controls['hr'].errors" class="alert alert-danger valContainer">
+      HR Name is required.
+    </div>
+</div>
+<div class="form-group">
+  <label>
+    Interviewer:
+    <input type="text" formControlName="interviewer">
+  </label>
+  <div *ngIf="submitted && candidateForm.controls['interviewer'].errors" class="alert alert-danger valContainer">
+      Interviewer Name is required.
+    </div>
+</div>
+<div class="form-group">
+  <label>
+    Selected:
+    <input type="checkbox" formControlName="selected">
+  </label>
+  </div>
+  <button id="btnSubmit" type="submit" [disabled]="loading" class="btn btn-success">Save</button>&nbsp;
+  <button id="btnCancel" (click)="cancelCreateOrEdit()" class="btn btn-success">Cancel</button>
+</form>

@@ -1,0 +1,8 @@
+<label mwlDraggable dropData="control" id="lbl_{{data.id}}" (dragEnd)="controlDragEnd($event, data.id)">  {{data.text}}      
+                              
+                  <input kendoTextBox mwlResizable id="elmnt_{{data.id}}"
+                  [enableGhostResize]="false"                
+                  (resizeEnd)="onResizeEnd($event, data.id)"
+                  [resizeEdges]="{bottom: true, right: true, top: true, left: true}" />                
+                <a (click)="onDeleteClick(data)"> <img style="height: 70px; width:70px;cursor: pointer;" src="../../assets/images/delete.png"/></a>
+                </label>

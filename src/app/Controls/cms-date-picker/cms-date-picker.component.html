@@ -1,0 +1,7 @@
+<label mwlDraggable id="lbl_{{data.id}}" (dragEnd)="controlDragEnd($event, data.id)"> {{data.text}}
+    <kendo-datepicker id="elmnt_{{data.id}}">
+    </kendo-datepicker>
+    <a (click)="onDeleteClick(data)" title="Delete">
+        <img style="height: 70px; width:70px;cursor: pointer;" src="../../assets/images/delete.png" />
+    </a>
+</label>

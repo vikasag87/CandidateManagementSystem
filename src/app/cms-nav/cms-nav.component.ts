@@ -16,7 +16,7 @@ export class CMSNavComponent {
   //     map(result => result.matches)
   //   );
     
-  constructor(private session: SessionStorageService) {
+  constructor(public session: SessionStorageService) {
     //debugger;
     //let abc = this.session;
   }

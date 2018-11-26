@@ -1,8 +1,10 @@
 import { MyDirectiveDirective } from './my-directive.directive';
+import { ElementRef } from "@angular/core";
 
 describe('MyDirectiveDirective', () => {
   it('should create an instance', () => {
-    const directive = new MyDirectiveDirective();
+    var el:ElementRef;
+    const directive = new MyDirectiveDirective(el);
     expect(directive).toBeTruthy();
   });
 });
